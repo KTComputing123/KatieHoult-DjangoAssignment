@@ -13,3 +13,6 @@ An account manager user has been set up to allow the login page to be demonstrat
 USERNAME: Hkylie2022
 PASSWORD: Avatar!01
 
+## Docker images and container
+To get the docker images and run the container, use command: docker-compose up -d
+

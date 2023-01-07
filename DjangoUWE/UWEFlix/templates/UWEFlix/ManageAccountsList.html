@@ -1,0 +1,53 @@
+{% extends "UWEFlix/layout.html" %}
+
+{% block title %}
+    Account List
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Accounts Information</h1>
+
+    <!-- Search section  -->
+    <div class="center-form" style="display: flex; justify-content: center;">
+        <form action="{% url 'ManageAccountsList' %}" method="GET" style="width: 500px;">
+            <div class="input-group mb-3">
+              <input type="text" class="form-control" placeholder="Search by account name" aria-label="" aria-describedby="basic-addon1" style="margin-right: 10px;"
+              name="search_query" value="{{ search_query }}"/>
+    
+              <input class="btn btn-success" type="submit" value="Search"/>
+            </div>
+        </form>
+    </div>
+    <br>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Club Name</th>
+                <th scope="col">Card Holder Name</th>
+                <th scope="col">Card Number</th>
+                <th scope="col">Card Expiry Date MM/YY</th>
+                <th scope="col">Discount Rate %</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for acc in accounts %}
+                <tr>
+                    <th scope="row">{{ acc.clubName }}</th>
+                    <td>{{ acc.acc_name }}</td>
+                    <td>{{ acc.acc_cardNumber }}</td>
+                    <td>{{ acc.acc_cardExpiryDate }}</td>
+                    <td>{{ acc.acc_discountRate }}</td>
+                    <td>
+                        <a style="margin-right: 30px;" href="{% url 'ManageAccountsEdit' acc.id %}">Edit</a>
+                        <a href="{% url 'ManageAccountsDelete' acc.id %}">Remove</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="text-center">
+        <a href="{% url 'ManageAccountsCreate' %}"><button type="button" class="btn btn-primary">Add New Info</button></a>
+    </div>
+{% endblock content %}

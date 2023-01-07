@@ -1,0 +1,18 @@
+{% extends "UWEFlix/layout.html" %}
+
+{% block title %}
+    Create
+{% endblock title %}
+
+{% block content %}
+    <h1 style="text-align: center; padding-top: 1em; padding-bottom: 1em;">Add New Account Information</h1>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-success">
+    </form>
+    <div class="text-center">
+        <a href="{% url 'ManageAccountsList' %}"><button type="button" class="btn btn-primary">Back</button></a>
+    </div>
+{% endblock content %}
